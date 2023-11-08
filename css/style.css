@@ -1,0 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Roboto:ital,wght@0,100;0,300;0,700;1,100;1,300;1,700&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css");
+
+body {
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    font-weight: 450;
+    background-color: antiquewhite;
+}
+
+.lista-autos {
+    font-size: 2rem;
+}
+
