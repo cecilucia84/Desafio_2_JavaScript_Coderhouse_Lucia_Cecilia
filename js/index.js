@@ -72,5 +72,5 @@ function iniciarCotizacion() {
 }
 
 
-// Llamando a la función iniciarCotizacion para comenzar el proceso
+// Se llama a la función iniciarCotizacion para comenzar el proceso
 iniciarCotizacion();
