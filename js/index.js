@@ -1,13 +1,23 @@
+class Autos_Venta {
+  constructor(codigo, marca, modelo, anio, precio) {
+    this.CODIGO = codigo;
+    this.MARCA = marca;
+    this.MODELO = modelo;
+    this.ANIO = anio;
+    this.PRECIO = precio;
+  }
+}
+
 const autos = [
-  { CODIGO: 1, MARCA: 'Renault', MODELO: 'Stepway', ANIO: 2017, PRECIO: 5500000 },
-  { CODIGO: 2, MARCA: 'Fiat', MODELO: 'Chronos', ANIO: 2019, PRECIO: 6600000 },
-  { CODIGO: 3, MARCA: 'Chevrolet', MODELO: 'Corsa', ANIO: 2013, PRECIO: 4500000 },
-  { CODIGO: 4, MARCA: 'Nissan', MODELO: 'Versa', ANIO: 2016, PRECIO: 5000000 },
-  { CODIGO: 5, MARCA: 'Peugeot', MODELO: '207', ANIO: 2015, PRECIO: 4500000 },
-  { CODIGO: 6, MARCA: 'Volkswagen', MODELO: 'Bora', ANIO: 2018, PRECIO: 6400000 },
-  { CODIGO: 7, MARCA: 'Ford', MODELO: 'Fiesta', ANIO: 2017, PRECIO: 5700000 },
-  { CODIGO: 8, MARCA: 'Citroen', MODELO: 'Berlingo', ANIO: 2020, PRECIO: 6900000 },
-]
+  new Autos_Venta(1, 'Renault', 'Stepway', 2017, 5500000),
+  new Autos_Venta(2, 'Fiat', 'Chronos', 2019, 6600000),
+  new Autos_Venta(3, 'Chevrolet', 'Corsa', 2013, 4500000),
+  new Autos_Venta(4, 'Nissan', 'Versa', 2016, 5000000),
+  new Autos_Venta(5, 'Peugeot', '207', 2015, 4500000),
+  new Autos_Venta(6, 'Volkswagen', 'Bora', 2018, 6400000),
+  new Autos_Venta(7, 'Ford', 'Fiesta', 2017, 5700000),
+  new Autos_Venta(8, 'Citroen', 'Berlingo', 2020, 6900000)
+];
 
 const autosSeleccionados = [];
 
