@@ -15,8 +15,7 @@ function mostrarAutosEnVenta() {
   alert("Autos en venta:");
   for (let i = 0; i < autos.length; i++) {
     const auto = autos[i];
-    alert(`Código: ${auto.CODIGO}, Marca: ${auto.MARCA}, Modelo: ${auto.MODELO}, Año: ${auto.ANIO}, Precio: $${auto.PRECIO}`);
-  }
+    alert(`Código: ${auto.CODIGO}, Marca: ${auto.MARCA}, Modelo: ${auto.MODELO}, Año: ${auto.ANIO}, Precio: $${auto.PRECIO}`);}
   console.table(autos);
 }
 
@@ -30,12 +29,15 @@ function calcularCuotas(auto, cuotas) {
 
 function cotizar() {
   let verAutos = confirm("¿Deseas ver los autos en venta?");
-  if (verAutos) {
-    mostrarAutosEnVenta();
-  }
+  if (verAutos) { mostrarAutosEnVenta();}
 
   let codigo = parseInt(prompt("Selecciona el código del vehículo que deseas financiar:"));
   let autoAComprar = autos.find((auto) => auto.CODIGO === codigo);
+
+  if (isNaN(codigo) || autoAComprar === undefined) {
+    alert ("Código de vehículo incorrecto o no válido.⛔");
+    console.warn("Código de vehículo incorrecto o no válido.");
+  } 
 
   if (autoAComprar) {
     autosSeleccionados.push(autoAComprar);
@@ -51,7 +53,7 @@ function cotizar() {
       let cuotasDetalle = "";
       for (let i = 1; i <= cuotas; i++) {
         cuotasDetalle += `Cuota ${i}: $${montoCuota}\n`;
-      }
+ }
       alert("Detalle de Cuotas:\n" + cuotasDetalle);
       console.log (cuotasDetalle)
     } else {
@@ -63,11 +65,9 @@ function cotizar() {
 function iniciarCotizacion() {
 
   let realizarCotizacion = true;
-
   while (realizarCotizacion) {
-    cotizar();
-    realizarCotizacion = confirm("¿Deseas realizar otra cotización?");
-  }
+  cotizar();
+  realizarCotizacion = confirm("¿Deseas realizar otra cotización?");}
   alert("Gracias por hacer tu cotización en TU AUTO!");
 }
 
