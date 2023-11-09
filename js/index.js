@@ -25,7 +25,8 @@ function mostrarAutosEnVenta() {
   alert("Autos en venta:");
   for (let i = 0; i < autos.length; i++) {
     const auto = autos[i];
-    alert(`Código: ${auto.CODIGO}, Marca: ${auto.MARCA}, Modelo: ${auto.MODELO}, Año: ${auto.ANIO}, Precio: $${auto.PRECIO}`);}
+    alert(`Código: ${auto.CODIGO}, Marca: ${auto.MARCA}, Modelo: ${auto.MODELO}, Año: ${auto.ANIO}, Precio: $${auto.PRECIO}`);
+  }
   console.table(autos);
 }
 
@@ -37,50 +38,73 @@ function calcularCuotas(auto, cuotas) {
   return montoCuota;
 }
 
+function seleccionarAutosParaComparar() {
+  let seleccionados = [];
+  let seguirSeleccionando = true;
+
+  while (seguirSeleccionando) {
+    let codigo = parseInt(prompt("Selecciona el código del vehículo que deseas comparar (0 para dejar de seleccionar):"));
+
+    if (codigo === 0) {
+      seguirSeleccionando = false;
+    } else {
+      let auto = autos.find((a) => a.CODIGO === codigo);
+
+      if (auto) {
+        seleccionados.push(auto);
+        console.log("Auto seleccionado:", auto);
+      } else {
+        alert("Código de vehículo incorrecto o no válido.⛔");
+        console.warn("Código de vehículo incorrecto o no válido.");
+      }
+    }
+  }
+  console.table(seleccionados);
+  return seleccionados;
+}
+
+function compararVehiculosSeleccionados(precio) {
+  const autosFiltrados = autosSeleccionados.filter((auto) => auto.PRECIO <= precio);
+  return autosFiltrados;
+
+  console.log("Autos Seleccionados Comparados:", autosComparados);  
+}
+
 function cotizar() {
   let verAutos = confirm("¿Deseas ver los autos en venta?");
-  if (verAutos) { mostrarAutosEnVenta();}
+  if (verAutos) {
+    mostrarAutosEnVenta();
+  }
 
-  let codigo = parseInt(prompt("Selecciona el código del vehículo que deseas financiar:"));
-  let autoAComprar = autos.find((auto) => auto.CODIGO === codigo);
+  let autosAComparar = seleccionarAutosParaComparar();
 
-  if (isNaN(codigo) || autoAComprar === undefined) {
-    alert ("Código de vehículo incorrecto o no válido.⛔");
-    console.warn("Código de vehículo incorrecto o no válido.");
-  } 
-
-  if (autoAComprar) {
-    autosSeleccionados.push(autoAComprar);
+  if (autosAComparar.length > 0) {
+    autosSeleccionados.push(...autosAComparar);
 
     console.log("Autos Seleccionados:", autosSeleccionados);
 
-    let cuotas = parseInt(prompt(`Has seleccionado el siguiente vehículo:\n${autoAComprar.MARCA} ${autoAComprar.MODELO} (${autoAComprar.ANIO}) con un precio de $${autoAComprar.PRECIO}.\n¿Deseas conocer nuestro plan de financiación?\n¿En cuántas cuotas deseas financiar? (hasta 48 cuotas con interés del 80%)`));
+    let cuotas = parseInt(prompt("¿En cuántas cuotas deseas financiar? (hasta 48 cuotas con interés del 80%)"));
 
     if (cuotas > 0 && cuotas <= 48) {
-      const montoCuota = calcularCuotas(autoAComprar, cuotas);
-      alert(`El monto de cada cuota será de $${montoCuota} para ${cuotas} cuotas.`);
-
-      let cuotasDetalle = "";
-      for (let i = 1; i <= cuotas; i++) {
-        cuotasDetalle += `Cuota ${i}: $${montoCuota}\n`;
- }
-      alert("Detalle de Cuotas:\n" + cuotasDetalle);
-      console.log (cuotasDetalle)
+      autosAComparar.forEach(auto => {
+        const montoCuota = calcularCuotas(auto, cuotas);
+        alert(`El monto de cada cuota para ${auto.MARCA} ${auto.MODELO} será de $${montoCuota} para ${cuotas} cuotas.`);
+      });
     } else {
       alert("⛔️ La cantidad de cuotas ingresada no es válida.");
     }
+ 
   }
 }
 
 function iniciarCotizacion() {
-
   let realizarCotizacion = true;
   while (realizarCotizacion) {
-  cotizar();
-  realizarCotizacion = confirm("¿Deseas realizar otra cotización?");}
+    cotizar();
+    realizarCotizacion = confirm("¿Deseas realizar otra cotización?");
+  }
   alert("Gracias por hacer tu cotización en TU AUTO!");
 }
-
 
 // Se llama a la función iniciarCotizacion para comenzar el proceso
 iniciarCotizacion();
