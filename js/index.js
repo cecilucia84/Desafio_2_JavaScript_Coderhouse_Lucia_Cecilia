@@ -53,6 +53,7 @@ function cotizar() {
         cuotasDetalle += `Cuota ${i}: $${montoCuota}\n`;
       }
       alert("Detalle de Cuotas:\n" + cuotasDetalle);
+      console.log (cuotasDetalle)
     } else {
       alert("⛔️ La cantidad de cuotas ingresada no es válida.");
     }
